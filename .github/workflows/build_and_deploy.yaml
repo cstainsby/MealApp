@@ -1,0 +1,51 @@
+# 
+# more info in this video 
+# https://www.youtube.com/watch?v=cGvmbYE4HOY
+
+name: "Build and Deploy"
+
+on:
+  push:
+    branches:
+      - main
+
+# setup enviornment variables 
+env:
+  AZURE_WEBAPP_NAME: aspnet-core-MealApp
+  AZURE_WEBAPP_PACKAGE_PATH: './published'
+  NETCORE_VERSION: '5.0.400'
+
+jobs:
+  build:
+    name: Build and Deploy
+    # make sure most recent ubuntu is being run
+    runs-on: ubuntu-latest
+
+    steps:
+      # get code 
+      - actions/checkout@v2
+
+      - name: Setup .Net Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          # refer to enviornment variables to get .NET version
+          - dotnet-version ${{ env.NETCORE_VERSION }}
+
+      # super explicit run of all steps in a publish 
+      - name: Restore
+        # get all necessary NuGet packages 
+        run: dotnet restore
+
+      - name: Build
+        run: dontnet build --no-restore -c Release
+
+      - name: Publish 
+        # store built items in ./published
+        run: dotnet publish --no-build -c Release -o ./published
+
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
+        with: 
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_MEALAPP_PUBLISH }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
