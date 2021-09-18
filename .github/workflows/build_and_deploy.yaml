@@ -11,7 +11,7 @@ on:
 
 # setup enviornment variables 
 env:
-  AZURE_WEBAPP_NAME: aspnet-core-MealApp
+  AZURE_WEBAPP_NAME: ColeSMealApp
   AZURE_WEBAPP_PACKAGE_PATH: './published'
   NETCORE_VERSION: '5.0.400'
 
