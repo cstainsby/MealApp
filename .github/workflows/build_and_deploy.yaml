@@ -37,7 +37,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dontnet build --no-restore -c Release
+        run: dotnet build --no-restore -c Release
 
       - name: Publish 
         # store built items in ./published
