@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           # refer to enviornment variables to get .NET version
-          - dotnet-version ${{ env.NETCORE_VERSION }}
+          dotnet-version: ${{ env.NETCORE_VERSION }}
 
       # super explicit run of all steps in a publish 
       - name: Restore
