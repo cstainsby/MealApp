@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealApp", "MealApp\MealApp.csproj", "{65FEA57B-446F-4802-871D-E94CDDF7EADB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MealApp", "MealApp\MealApp.csproj", "{65FEA57B-446F-4802-871D-E94CDDF7EADB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MealDataAccess", "MealDataAccess\MealDataAccess.csproj", "{D351321A-8E03-4165-8D1B-C9FCCD6ECE76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MealDataAccess", "MealDataAccess\MealDataAccess.csproj", "{D351321A-8E03-4165-8D1B-C9FCCD6ECE76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIClientManager", "APIClientManager\APIClientManager.csproj", "{4F725D32-1C91-4FD1-B7DB-96232908D867}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D351321A-8E03-4165-8D1B-C9FCCD6ECE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D351321A-8E03-4165-8D1B-C9FCCD6ECE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D351321A-8E03-4165-8D1B-C9FCCD6ECE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F725D32-1C91-4FD1-B7DB-96232908D867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F725D32-1C91-4FD1-B7DB-96232908D867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F725D32-1C91-4FD1-B7DB-96232908D867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F725D32-1C91-4FD1-B7DB-96232908D867}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
