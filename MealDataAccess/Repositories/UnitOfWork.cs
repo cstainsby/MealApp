@@ -11,7 +11,7 @@ namespace MealDataAccess.Repositories
     {
         private IDbConnection _dbConnection;
         private IDbTransaction _dbTransaction;
-        private ISimulationRepository _simRepo;
+        private IMealRepository _simRepo;
         private bool _disposed;
 
 
@@ -23,9 +23,9 @@ namespace MealDataAccess.Repositories
             _disposed = false;
         }
 
-        public ISimulationRepository SimulationRepo
+        public IMealRepository SimulationRepo
         {
-            get { return _simRepo ?? (_simRepo = new SimulationRepository(_dbTransaction)); }
+            get { return _simRepo ?? (_simRepo = new MealRepository(_dbTransaction)); }
         }
 
         public void Save()

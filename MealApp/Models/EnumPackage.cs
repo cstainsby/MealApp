@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MealDataAccess.Models
+namespace MealApp.Models
 {
-    public class MealModel : AbstractProjectModel
+    public class EnumPackage
     {
     }
 }

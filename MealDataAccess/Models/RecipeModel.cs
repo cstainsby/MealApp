@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace MealDataAccess.Models
 {
-    public class AbstractProjectModel
+    public class RecipeModel
     {
-        public int Id { get; set; }
+
     }
 }

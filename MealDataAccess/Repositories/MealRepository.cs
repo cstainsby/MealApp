@@ -10,10 +10,10 @@ using Dapper;
 
 namespace MealDataAccess.Repositories
 {
-    internal class SimulationRepository : Repository<MealModel>, ISimulationRepository
+    internal class MealRepository : Repository<MealModel>, IMealRepository
     {
         // possibly add a copy helper
-        public SimulationRepository(IDbTransaction _transaction) : base(_transaction)
+        public MealRepository(IDbTransaction _transaction) : base(_transaction)
         {
             _type = "Simulation";
         }

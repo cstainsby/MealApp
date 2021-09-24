@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MealDataAccess.Repositories
 {
-    public interface ISimulationRepository : IRepository<SimulationProjectModel>
+    public interface IMealRepository : IRepository<SimulationProjectModel>
     {
         Task<IEnumerable<SimulationProjectModel>> GetAllAsync();
         Task<int> AddAsync(int Id,

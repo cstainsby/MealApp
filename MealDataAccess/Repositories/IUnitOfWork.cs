@@ -8,7 +8,7 @@ namespace MealDataAccess.Repositories
     public interface IUnitOfWork : IDisposable
     {
         // add new repositories here
-        ISimulationRepository SimulationRepo { get; }
+        IMealRepository SimulationRepo { get; }
 
         // Save will save the database after modifications have been made
         void Save();
