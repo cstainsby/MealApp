@@ -7,6 +7,7 @@ namespace MealApp.Models
 {
     public class MealRequirements
     {
+        public Recipe Recipe { get; set; }
         public Person BuyingIngredients { get; set; }
         public Person CookingFood { get; set; }
         public int MealTime { get; set; }

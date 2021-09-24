@@ -27,6 +27,6 @@ namespace MealApp.Models
 
     public class Calender
     {
-        public List< MyProperty { get; set; }
+        
     }
 }

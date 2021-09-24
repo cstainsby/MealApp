@@ -13,7 +13,7 @@ namespace MealApp.Models
 
         private String SuggestedTime;
         
-        public Tuple<int,int,int> getSuggestedTime()
+        /*public Tuple<int,int,int> getSuggestedTime()
         {
             // read String SuggestedTime that is stored in text into a tuple of int's
             Tuple<int, int, int> time = new Tuple<int, int, int>
@@ -22,6 +22,6 @@ namespace MealApp.Models
                 );
 
             return time;
-        }
+        }*/
     }
 }

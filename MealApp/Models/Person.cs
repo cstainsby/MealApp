@@ -13,6 +13,5 @@ namespace MealApp.Models
         public PersonMetrics Metrics { get; set; }
         public List<Recipe> CreatedRecipes { get; set; }
         public List<Recipe> SavedRecipes { get; set; }
-
     }
 }
