@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APIClientManager.EdamamRecipeAPI
 {
-    public class RecipeProcessor : ProcessorInterface
+    /*public class RecipeProcessor : ProcessorInterface
     {
         public async Task GetByIdAsync(int Id = 0)
         {
@@ -35,5 +35,5 @@ namespace APIClientManager.EdamamRecipeAPI
                 }
             }
         }
-    }
+    }*/
 }
