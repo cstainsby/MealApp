@@ -37,5 +37,10 @@ namespace MealApp.Models
         public int VitE_mg { get; set; }
         public int VitK_ug { get; set; }
         public int Zinc_mg { get; set; }
+
+        public NutritionFacts()
+        {
+
+        }
     }
 }

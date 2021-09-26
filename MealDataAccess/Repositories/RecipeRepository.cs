@@ -10,20 +10,20 @@ using Dapper;
 
 namespace MealDataAccess.Repositories
 {
-    internal class MealRepository : Repository<MealModel>, IMealRepository
+    internal class RecipeRepository : Repository<RecipeModel>, IRecipeRepository
     {
         // possibly add a copy helper
-        public MealRepository(IDbTransaction _transaction) : base(_transaction)
+        public RecipeRepository(IDbTransaction _transaction) : base(_transaction)
         {
             _type = "Simulation";
         }
 
         // retrieve all items of type SimulationModel within the db 
-        public async Task<IEnumerable<MealModel>> GetAllAsync()
+        public async Task<IEnumerable<RecipeModel>> GetAllAsync()
         {
             string sql = @"SELECT Id, simName, simDesc, gitURL FROM dbo." + _type;
 
-            return await _connection.QueryAsync<MealModel>
+            return await _connection.QueryAsync<RecipeModel>
                 (sql,
                 transaction: _transaction);
         }
@@ -31,7 +31,7 @@ namespace MealDataAccess.Repositories
         // create a new item of type SimulationModel within db given Id
         public async Task<int> AddAsync()
         {
-            MealModel entity = processSimulation(
+            RecipeModel entity = processSimulation(
             );
 
             if (entity == null)

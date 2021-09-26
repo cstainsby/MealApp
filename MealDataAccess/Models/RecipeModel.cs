@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MealDataAccess.Models
 {
-    public class RecipeModel
+    public class RecipeModel : AbstractProjectModel
     {
 
     }
