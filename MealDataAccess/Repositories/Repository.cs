@@ -9,7 +9,7 @@ using System.Data;
 
 namespace MealDataAccess.Repositories
 {
-    internal class Repository<T> : AbstractRepository, IRepository<T> where T : AbstractProjectModel
+    internal class Repository<T> : AbstractRepository, IRepository<T> where T : AbstractProjectDBModel
     {
         public Repository(IDbTransaction _transaction) : base(_transaction)
         {

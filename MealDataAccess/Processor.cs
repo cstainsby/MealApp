@@ -8,14 +8,12 @@ namespace MealDataAccess
 {
     public static class Processor
     {
-        public static MealModel processSimulation()
+        public static RecipeDBModel processSimulation(String Name, int OwnerId, int IdOfNutritionFacts, int IdOfIngrdients, String WebsiteUrl)
         {
-            // create new sim
-            MealModel newSim = new MealModel
-            {
-            };
+            // create new recipe
+            RecipeDBModel newRecipe = new RecipeDBModel(Name, OwnerId, IdOfNutritionFacts, IdOfIngrdients, WebsiteUrl);
 
-            return newSim;
+            return newRecipe;
         }
     }
 }

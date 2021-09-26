@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace MealDataAccess.Repositories
 {
@@ -17,7 +17,7 @@ namespace MealDataAccess.Repositories
 
         public UnitOfWork(string cnnString)
         {
-            _dbConnection = new SqlConnection(cnnString);
+            _dbConnection = new SQLiteConnection(cnnString);
             _dbConnection.Open();
             _dbTransaction = _dbConnection.BeginTransaction();
             _disposed = false;

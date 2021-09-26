@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Runtime.dll;
 
 namespace APIClientManager.EdamamRecipeAPI
 {
@@ -11,11 +10,11 @@ namespace APIClientManager.EdamamRecipeAPI
     {
         public async Task GetByIdAsync(int Id = 0)
         {
-            URI websiteIdentifier;
+            Uri websiteIdentifier;
 
             if(Id > 0)
             {
-                websiteIdentifier = new URI($"https://api.edamam.com/api/recipes/v2/{ Id }");
+                websiteIdentifier = new Uri($"https://api.edamam.com/api/recipes/v2/{ Id }");
             }
             else
             {

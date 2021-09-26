@@ -6,9 +6,9 @@ using MealDataAccess.Models;
 
 namespace MealDataAccess.Repositories
 {
-    public interface IRecipeRepository : IRepository<RecipeModel>
+    public interface IRecipeRepository : IRepository<RecipeDBModel>
     {
-        Task<IEnumerable<RecipeModel>> GetAllAsync();
-        Task<int> AddAsync();
+        Task<IEnumerable<RecipeDBModel>> GetAllAsync();
+        Task<int> AddAsync(String Name, int OwnerId, int IdOfNutritionFacts, int IdOfIngrdients, String WebsiteUrl);
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MealDataAccess.Models
 {
-    public class NutritionModel
+    public class NutritionDBModel
     {
         public int Calories { get; set; }
         // Macronutrients

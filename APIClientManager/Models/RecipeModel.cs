@@ -8,7 +8,5 @@ namespace APIClientManager.Models
     public class RecipeModel
     {
         public int Id { get; set; }
-
-        public int 
     }
 }

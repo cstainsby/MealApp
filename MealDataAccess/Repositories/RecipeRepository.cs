@@ -10,28 +10,33 @@ using Dapper;
 
 namespace MealDataAccess.Repositories
 {
-    internal class RecipeRepository : Repository<RecipeModel>, IRecipeRepository
+    internal class RecipeRepository : Repository<RecipeDBModel>, IRecipeRepository
     {
         // possibly add a copy helper
         public RecipeRepository(IDbTransaction _transaction) : base(_transaction)
         {
-            _type = "Simulation";
+            _type = "Recipe";
         }
 
-        // retrieve all items of type SimulationModel within the db 
-        public async Task<IEnumerable<RecipeModel>> GetAllAsync()
+        // retrieve all items of type RecipeDBModel within the db 
+        public async Task<IEnumerable<RecipeDBModel>> GetAllAsync()
         {
-            string sql = @"SELECT Id, simName, simDesc, gitURL FROM dbo." + _type;
+            string sql = @"SELECT Id, Name, OwnerId, IdOfNutritionFacts, IdOfIngrdients, WebsiteUrl FROM MealAppDB." + _type;
 
-            return await _connection.QueryAsync<RecipeModel>
+            return await _connection.QueryAsync<RecipeDBModel>
                 (sql,
                 transaction: _transaction);
         }
 
-        // create a new item of type SimulationModel within db given Id
-        public async Task<int> AddAsync()
+        // create a new item of type RecipeDBModel within db given Id
+        public async Task<int> AddAsync(String Name, int OwnerId, int IdOfNutritionFacts, int IdOfIngrdients, String WebsiteUrl)
         {
-            RecipeModel entity = processSimulation(
+            RecipeDBModel entity = processSimulation(
+                Name, 
+                OwnerId, 
+                IdOfNutritionFacts, 
+                IdOfIngrdients, 
+                WebsiteUrl
             );
 
             if (entity == null)
@@ -39,15 +44,24 @@ namespace MealDataAccess.Repositories
                 throw new ArgumentNullException("entity");
             }
 
-            string sql = @"INSERT INTO dbo." + _type + " (simName, simDesc, gitURL) VALUES(@simName, @simDesc, @gitURL);";
+            string sql = @"INSERT INTO MealAppDB." + _type + " (Name, OwnerId, IdOfNutritionFacts, IdOfIngrdients, WebsiteUrl) VALUES(@Name, @OwnerId, @IdOfNutritionFacts, @IdOfIngrdients, @WebsiteUrl);";
 
-            sql = sql.Replace("@simName", $"'{entity.simName}'");
-            sql = sql.Replace("@simDesc", $"'{entity.simDesc}'");
-            sql = sql.Replace("@gitURL", $"'{entity.gitURL}'");
+            sql = sql.Replace("@Name", $"'{entity.Name}'");
+            sql = sql.Replace("@OwnerId", $"'{entity.OwnerId}'");
+            sql = sql.Replace("@IdOfNutritionFacts", $"'{entity.IdOfNutritionFacts}'");
+            sql = sql.Replace("@IdOfIngredients", $"'{entity.IdOfIngredients}'");
+            sql = sql.Replace("@WebsiteUrl", $"'{entity.WebsiteUrl}'");
 
             int rowsAffected = await _connection.ExecuteAsync
                 (sql,
-                new { Id = entity.Id, simName = entity.simName, gitURL = entity.gitURL, simDesc = entity.simDesc },
+                new { 
+                    Id = entity.Id, 
+                    Name = entity.Name, 
+                    OwnerId = entity.OwnerId, 
+                    IdOfNutritionFacts = entity.IdOfNutritionFacts,
+                    IdOfIngredients = entity.IdOfIngredients,
+                    WebsiteUrl = entity.WebsiteUrl
+                },
                 transaction: _transaction);
 
             return rowsAffected;
