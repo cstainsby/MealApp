@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MealDataAccess.Models;
-using static MealDataAccess.Processor; // statically include to use static functions without instantiating object
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using Dapper;
@@ -23,15 +22,13 @@ namespace MealDataAccess.Repositories
         {
             string sql = @"SELECT Id, Name, OwnerId, IdOfNutritionFacts, IdOfIngrdients, WebsiteUrl FROM MealAppDB." + _type;
 
-            return await _connection.QueryAsync<RecipeDBModel>
-                (sql,
-                transaction: _transaction);
+            return await _connection.QueryAsync<RecipeDBModel>(sql,transaction: _transaction);
         }
 
         // create a new item of type RecipeDBModel within db given Id
         public async Task<int> AddAsync(String Name, int OwnerId, int IdOfNutritionFacts, int IdOfIngrdients, String WebsiteUrl)
         {
-            RecipeDBModel entity = processSimulation(
+            RecipeDBModel entity = new RecipeDBModel(
                 Name, 
                 OwnerId, 
                 IdOfNutritionFacts, 
@@ -52,17 +49,7 @@ namespace MealDataAccess.Repositories
             sql = sql.Replace("@IdOfIngredients", $"'{entity.IdOfIngredients}'");
             sql = sql.Replace("@WebsiteUrl", $"'{entity.WebsiteUrl}'");
 
-            int rowsAffected = await _connection.ExecuteAsync
-                (sql,
-                new { 
-                    Id = entity.Id, 
-                    Name = entity.Name, 
-                    OwnerId = entity.OwnerId, 
-                    IdOfNutritionFacts = entity.IdOfNutritionFacts,
-                    IdOfIngredients = entity.IdOfIngredients,
-                    WebsiteUrl = entity.WebsiteUrl
-                },
-                transaction: _transaction);
+            int rowsAffected = await _connection.ExecuteAsync(sql, entity, transaction: _transaction);
 
             return rowsAffected;
         }

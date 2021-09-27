@@ -19,6 +19,7 @@ namespace MealDataAccess.Models
         public int IdOfIngredients { get; }
         public String WebsiteUrl { get; }
 
+        
         public RecipeDBModel(String Name, int OwnerId, int IdOfNutritionFacts, int IdOfIngredients,  String WebsiteUrl)
         {
             this.Name = Name;
