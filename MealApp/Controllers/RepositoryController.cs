@@ -7,22 +7,19 @@ using MealDataAccess.Repositories;
 
 namespace MealApp.Controllers
 {
-    public class CalenderController : Controller
+    public class RepositoryController : Controller
     {
         private UnitOfWork UnitOfWork;
 
-        public CalenderController(UnitOfWork UnitOfWork)
+        public RepositoryController(UnitOfWork UnitOfWork)
         {
             this.UnitOfWork = UnitOfWork;
         }
 
+
         public IActionResult Index()
         {
-            IRecipeRepository recipeRepository = UnitOfWork.RecipeRepo;
-
-            var recipes = recipeRepository.GetAllAsync();
-
-            return View(recipes);
+            return View();
         }
     }
 }

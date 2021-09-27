@@ -11,7 +11,7 @@ namespace MealDataAccess.Repositories
     {
         private IDbConnection _dbConnection;
         private IDbTransaction _dbTransaction;
-        private IRecipeRepository _simRepo;
+        private IRecipeRepository _RecipeRepo;
         private bool _disposed;
 
 
@@ -23,9 +23,9 @@ namespace MealDataAccess.Repositories
             _disposed = false;
         }
 
-        public IRecipeRepository SimulationRepo
+        public IRecipeRepository RecipeRepo
         {
-            get { return _simRepo ?? (_simRepo = new RecipeRepository(_dbTransaction)); }
+            get { return _RecipeRepo ?? (_RecipeRepo = new RecipeRepository(_dbTransaction)); }
         }
 
         public void Save()
@@ -46,7 +46,7 @@ namespace MealDataAccess.Repositories
                 // once the above two steps are finished dispose of the current repos and prepare for any next requests
                 _dbTransaction.Dispose();
                 _dbTransaction = _dbConnection.BeginTransaction();
-                _simRepo = null;
+                _RecipeRepo = null;
             }
         }
 

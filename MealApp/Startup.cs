@@ -13,6 +13,7 @@ using MealApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using MealDataAccess.Repositories;
 
 namespace MealApp
 {
@@ -30,13 +31,23 @@ namespace MealApp
         {
             services.AddControllersWithViews();
 
-            // Entity framework services for login functionality
+            // -------------------Entity framework services for login functionality-------------------
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // -------------------Dapper data access for non-user sensitive data-------------------
+            // build a configuration to access connection strings
+            IConfiguration cnn = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var unitOfWork = new UnitOfWork(cnn.GetConnectionString("DefaultConnection"));
+            // add UnitOfWork singleton to be called in controllers
+            services.AddSingleton<UnitOfWork>(unitOfWork);
 
             // configure identity options for user, link to Microsoft docs for more info
             //https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio

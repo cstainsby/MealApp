@@ -3,7 +3,7 @@
 *@
 @{
 }
-
+@model IEnumerable<Models.Recipe>
 
 <h1>
     Your Calender
@@ -19,20 +19,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-            </tr>
+           @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Name</th>
+                </tr>
+            }
         </tbody>
     </table>
 </body>
