@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MealApp.Models
 {
-    public class NutritionFacts : IStoreableModel
+    public class NutritionFacts : IStoreableModel<NutritionFacts, MealDataAccess.Models.NutritionDBModel>
     {
         public int Calories { get; set; }
         // Macronutrients
@@ -44,12 +44,14 @@ namespace MealApp.Models
 
         }
 
-        public void readDBEquivalent(MealDataAccess.Models.NutritionDBModel dBModel) 
+        public NutritionFacts readDBEquivalent(MealDataAccess.Models.NutritionDBModel dBModel) 
         {
             this.Calories = dBModel.Calories;
             this.Carbohydrates_g = dBModel.Carbohydrates_g;
             this.Protein_g = dBModel.Protein_g;
             this.Fats_Total_g = dBModel.Fats_Total_g;
+
+            return this;
         }
     }
 }

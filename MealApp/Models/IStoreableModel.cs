@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace MealApp.Models
 {
-    interface IStoreableModel 
+    // generic conversion function from stored model to the app model
+    interface IStoreableModel<AppMod, DbMod> 
+        where AppMod : class 
+        where DbMod : class
     {
-        public void readDBEquivalent();
+        public AppMod readDBEquivalent(DbMod dbMod);
     }
 }

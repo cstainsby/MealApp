@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MealDataAccess.Repositories;
+using MealApp.Models;
 
 namespace MealApp.Controllers
 {
@@ -18,20 +19,21 @@ namespace MealApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<Models.Recipe> recipesList = new List<Models.Recipe>();
+            List<Recipe> recipesList = new List<Recipe>();
 
             // get recipe repository and all repositories of other object that it depends on
             IRecipeRepository recipeRepository = UnitOfWork.RecipeRepo;
-            IRecipeRepository ingredientRepository = UnitOfWork.IngredientRepo;
-            IRecipeRepository nutritionFactRepo = UnitOfWork.IngredientRepo;
+            IIngredientRepository ingredientRepository = UnitOfWork.IngredientRepo;
+            INutritionRepository nutritionFactRepo = UnitOfWork.NutritionRepo;
 
             var DBrecipes = await recipeRepository.GetAllAsync();
 
             foreach (var recipe in DBrecipes)
             {
-                recipesList.Append(new Models.Recipe(
+                recipesList.Append(new Recipe(
                     recipe.Name, 
-                    recipe.
+                    ingredientRepository.GetByIdAsync(recipe.IdOfIngredients),
+                    new NutritionFacts().readDBEquivalent(await nutritionFactRepo.GetByIdAsync(recipe.IdOfNutritionFacts)),
                     recipe.WebsiteUrl
                     ));
             }

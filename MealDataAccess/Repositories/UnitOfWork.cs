@@ -26,6 +26,7 @@ namespace MealDataAccess.Repositories
             _disposed = false;
         }
 
+        // getter properties for outside communication with the DB
         public IRecipeRepository RecipeRepo
         {
             get { return _RecipeRepo ?? (_RecipeRepo = new RecipeRepository(_dbTransaction)); }
