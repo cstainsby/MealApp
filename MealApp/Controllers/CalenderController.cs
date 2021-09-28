@@ -30,10 +30,13 @@ namespace MealApp.Controllers
 
             foreach (var recipe in DBrecipes)
             {
+                var DBingredients = await ingredientRepository.GetByIdAsync(recipe.IdOfIngredients);
+                var DBnutrition = await nutritionFactRepo.GetByIdAsync(recipe.IdOfNutritionFacts);
+
                 recipesList.Append(new Recipe(
                     recipe.Name, 
-                    ingredientRepository.GetByIdAsync(recipe.IdOfIngredients),
-                    new NutritionFacts().readDBEquivalent(await nutritionFactRepo.GetByIdAsync(recipe.IdOfNutritionFacts)),
+                    new IngredientList().readDBEquivalent(DBingredients),
+                    new NutritionFacts().readDBEquivalent(DBnutrition),
                     recipe.WebsiteUrl
                     ));
             }
