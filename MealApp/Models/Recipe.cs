@@ -12,7 +12,7 @@ namespace MealApp.Models
         public String Name { get; set; }
 
         [Display(Name="Ingredients")]
-        public List<Ingredient> Ingredients { get; set; }
+        public IngredientList Ingredients { get; set; }
 
         [Display(Name="Nutrition Facts")]
         public NutritionFacts NutritionFacts { get; set; }
@@ -23,12 +23,12 @@ namespace MealApp.Models
         public Recipe()
         {
             Name = null;
-            Ingredients = new List<Ingredient>();
+            Ingredients = new IngredientList();
             NutritionFacts = new NutritionFacts();
             UrlToWebstie = null;
         }
 
-        public Recipe(String Name, List<Ingredient> Ingredients, NutritionFacts Nutrition, String UrlToWebsite)
+        public Recipe(String Name, IngredientList Ingredients, NutritionFacts Nutrition, String UrlToWebsite)
         {
             this.Name = Name;
             this.Ingredients = Ingredients;
