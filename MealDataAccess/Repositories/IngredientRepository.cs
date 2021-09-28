@@ -12,7 +12,7 @@ namespace MealDataAccess.Repositories
     {
         public IngredientRepository(IDbTransaction _transaction) : base(_transaction)
         {
-            _type = "Recipe";
+            _type = "Ingredient";
         }
 
         // retrieve all items of type RecipeDBModel within the db 

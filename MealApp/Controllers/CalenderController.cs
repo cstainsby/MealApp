@@ -16,13 +16,27 @@ namespace MealApp.Controllers
             this.UnitOfWork = UnitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            List<Models.Recipe> recipesList = new List<Models.Recipe>();
+
+            // get recipe repository and all repositories of other object that it depends on
             IRecipeRepository recipeRepository = UnitOfWork.RecipeRepo;
+            IRecipeRepository ingredientRepository = UnitOfWork.IngredientRepo;
+            IRecipeRepository nutritionFactRepo = UnitOfWork.IngredientRepo;
 
-            var recipes = recipeRepository.GetAllAsync();
+            var DBrecipes = await recipeRepository.GetAllAsync();
 
-            return View(recipes);
+            foreach (var recipe in DBrecipes)
+            {
+                recipesList.Append(new Models.Recipe(
+                    recipe.Name, 
+                    recipe.
+                    recipe.WebsiteUrl
+                    ));
+            }
+
+            return View(recipesList);
         }
     }
 }

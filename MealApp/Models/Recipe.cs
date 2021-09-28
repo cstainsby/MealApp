@@ -27,5 +27,13 @@ namespace MealApp.Models
             NutritionFacts = new NutritionFacts();
             UrlToWebstie = null;
         }
+
+        public Recipe(String Name, List<Ingredient> Ingredients, NutritionFacts Nutrition, String UrlToWebsite)
+        {
+            this.Name = Name;
+            this.Ingredients = Ingredients;
+            this.NutritionFacts = NutritionFacts;
+            this.UrlToWebstie = UrlToWebstie;
+        }
     }
 }

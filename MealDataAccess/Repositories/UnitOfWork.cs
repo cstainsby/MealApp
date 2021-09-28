@@ -11,9 +11,12 @@ namespace MealDataAccess.Repositories
     {
         private IDbConnection _dbConnection;
         private IDbTransaction _dbTransaction;
-        private IRecipeRepository _RecipeRepo;
         private bool _disposed;
 
+        // all availible repos
+        private IRecipeRepository _RecipeRepo;
+        private IIngredientRepository _IngredientRepo;
+        private INutritionRepository _NutritionRepo;
 
         public UnitOfWork(string cnnString)
         {
@@ -26,6 +29,16 @@ namespace MealDataAccess.Repositories
         public IRecipeRepository RecipeRepo
         {
             get { return _RecipeRepo ?? (_RecipeRepo = new RecipeRepository(_dbTransaction)); }
+        }
+
+        public IIngredientRepository IngredientRepo
+        {
+            get { return _IngredientRepo ?? (_IngredientRepo = new IngredientRepository(_dbTransaction)); }
+        }
+
+        public INutritionRepository NutritionRepo
+        {
+            get { return _NutritionRepo ?? (_NutritionRepo = new NutritionRepository(_dbTransaction)); }
         }
 
         public void Save()
