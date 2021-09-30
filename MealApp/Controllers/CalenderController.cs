@@ -43,5 +43,31 @@ namespace MealApp.Controllers
 
             return View(recipesList);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Recipe model)
+        {
+            // prevent spoofing check
+            if (ModelState.IsValid)
+            {
+
+                // get recipe repository and all repositories of other object that it depends on
+                IRecipeRepository recipeRepository = UnitOfWork.RecipeRepo;
+                IIngredientRepository ingredientRepository = UnitOfWork.IngredientRepo;
+                INutritionRepository nutritionFactRepo = UnitOfWork.NutritionRepo;
+
+                /*int resultRecipe = await recipeRepository.AddAsync(
+                    );
+
+                UnitOfWork.Save();
+
+                if (resultRecipe > 0 &&)
+                {
+                    return RedirectToAction("Index", "Workshop");
+                }*/
+            }
+
+            return StatusCode(500, new { Message = "Error Adding Item" });
+        }
     }
 }

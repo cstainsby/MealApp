@@ -7,6 +7,5 @@ namespace MealDataAccess
 {
     public class MappingCalls
     {
-        public static 
     }
 }

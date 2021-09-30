@@ -18,22 +18,22 @@ namespace MealApp.Models
         public NutritionFacts NutritionFacts { get; set; }
 
         [Display(Name="Url to Website")]
-        public String UrlToWebstie { get; set; }
+        public String UrlToWebsite { get; set; }
 
         public Recipe()
         {
             Name = null;
             Ingredients = new IngredientList();
             NutritionFacts = new NutritionFacts();
-            UrlToWebstie = null;
+            UrlToWebsite = null;
         }
 
-        public Recipe(String Name, IngredientList Ingredients, NutritionFacts Nutrition, String UrlToWebsite)
+        public Recipe(String Name, IngredientList Ingredients, NutritionFacts NutritionFacts, String UrlToWebsite)
         {
             this.Name = Name;
             this.Ingredients = Ingredients;
             this.NutritionFacts = NutritionFacts;
-            this.UrlToWebstie = UrlToWebstie;
+            this.UrlToWebsite = UrlToWebsite;
         }
     }
 }

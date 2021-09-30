@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace APIClientManager.Models
 {
-    public class RecipeModel
+    public class RecipeAPIModel
     {
         public int Id { get; set; }
+
+        public String foodID { get; set; }
     }
 }
